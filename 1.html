@@ -1,0 +1,48 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-language" content="en" />
+<title>Four methods of Javascript animation - 1. Canvas</title>
+</head>
+<body>
+<script>
+
+var width = 100,
+    height = 86,
+    frames = 10,
+    
+    actualFrame = 0,
+       
+    posX = 100,
+    posY = 100;
+
+var canvas = document.createElement('canvas'),
+	canvasStyle = canvas.style,
+	ctx = canvas.getContext("2d"),
+	image = document.createElement('img');
+	
+	image.src = 'sprite.jpg';
+	
+	canvasStyle.position = "absolute";
+	canvasStyle.top = posX;
+	canvasStyle.left = posY;
+	canvas.width = width;
+	canvas.height = height;
+	document.body.appendChild(canvas);
+	
+var draw = function(){
+	ctx.drawImage(image, 0, height * actualFrame, width, height, 0, 0, width, height);
+	
+		if (actualFrame == frames) {
+			actualFrame = 0;
+		}
+		else {
+			actualFrame++;
+		}
+	
+} 
+
+setInterval(draw, 80);        
+</script>
+</body>
+</html>

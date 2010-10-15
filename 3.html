@@ -1,0 +1,57 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-language" content="en" />
+<title>Four methods of Javascript animation - 3. Clip-rect method</title>
+</head>
+<body>
+<script>
+
+var width = 100,
+    height = 86,
+    frames = 10,
+    
+    actualFrame = 0,
+       
+    posX = 100,
+    posY = 100;
+
+var canvas = document.createElement('img'),
+	canvasStyle = canvas.style;
+	
+	canvas.src = 'sprite.jpg';
+	
+	canvasStyle.position = "absolute";
+	canvasStyle.top = posX;
+	canvasStyle.left = posY;
+
+	document.body.appendChild(canvas);
+	
+var draw = function(){
+	var frameTop = height * actualFrame, 
+		frameLeft = 0, 
+		frameRight = width, 
+		frameBottom = frameTop + height;
+                                 
+	canvasStyle.clip = "rect("
+		+frameTop +"px " //top
+		+frameRight +"px " //right
+		+frameBottom +"px " //bottom
+		+frameLeft +"px )"; //left
+                                      
+	canvasStyle.top = posY - height * actualFrame;
+	
+		if (actualFrame == frames) {
+			actualFrame = 0;
+		}
+		else {
+			actualFrame++;
+		}
+	
+} 
+
+setInterval(draw, 80);
+    
+</script>
+</body>
+</html>

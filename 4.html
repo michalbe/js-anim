@@ -1,0 +1,54 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-language" content="en" />
+<title>Four methods of Javascript animation - 4. Div's hidden overflow</title>
+</head>
+<body>
+<script>
+
+var width = 100,
+    height = 86,
+    frames = 10,
+    
+    actualFrame = 0,
+       
+    posX = 100,
+    posY = 100;
+
+var canvas = document.createElement('div'),
+	canvasStyle = canvas.style,
+	image = document.createElement('img'),
+	imageStyle = image.style;
+	
+	image.src = 'sprite.jpg';
+	
+	canvasStyle.position = imageStyle.position = "absolute";
+	canvasStyle.top = posX;
+	canvasStyle.left = posY;
+	canvasStyle.overflow = "hidden";
+	canvasStyle.width = width;
+	canvasStyle.height = height;
+	
+	imageStyle.top = 0;
+	imageStyle.left = 0;
+	canvas.appendChild(image);
+	document.body.appendChild(canvas);
+	
+var draw = function(){
+                                 
+	imageStyle.top = -1*height * actualFrame;
+	
+		if (actualFrame == frames) {
+			actualFrame = 0;
+		}
+		else {
+			actualFrame++;
+		}
+	
+} 
+
+setInterval(draw, 80);        
+</script>
+</body>
+</html>
